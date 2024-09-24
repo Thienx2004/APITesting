@@ -60,3 +60,69 @@ Scenario('Send request to non-existent api', async ({ I }) => {
     I.sendGetRequest('/products/1');
     I.seeResponseCodeIsClientError();
 });
+
+Scenario('Calculate Fibonacci with valid value (n = 5)', async ({ I }) => {
+    const n = 5;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 5 });
+});
+
+Scenario('Calculate Fibonacci with n = 0', async ({ I }) => {
+    const n = 0;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 0 });
+});
+
+Scenario('Calculate Fibonacci with n = 1', async ({ I }) => {
+    const n = 1;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 1 });
+});
+
+Scenario('Calculate Fibonacci with negative value (n = -1)', async ({ I }) => {
+    const n = -1;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(400);
+    I.seeResponseContainsJson({ error: 'n should be greater than or equal to 0' });
+});
+
+Scenario('Calculate Fibonacci with large value (n = 50)', async ({ I }) => {
+    const n = 50;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 12586269025 });
+});
+
+Scenario('Calculate Fibonacci with non-integer input (n = abc)', async ({ I }) => {
+    const n = 'abc';
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(400);
+});
+
+Scenario('Calculate Fibonacci with missing parameter', async ({ I }) => {
+    const response = await I.sendGetRequest('/fibonacci');
+    I.seeResponseCodeIs(400);
+    I.seeResponseContainsJson({ error: "Missing required parameter 'n'" });
+});
+
+Scenario('Calculate Fibonacci with boundary value (n = 2)', async ({ I }) => {
+    const n = 2;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 1 });
+});
+
+Scenario('Performance test with large n (n = 40)', async ({ I }) => {
+    const n = 40;
+    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
+    I.seeResponseCodeIs(200);
+    I.seeResponseContainsJson({ result: 102334155 });
+});
+
+Scenario('Send request to invalid endpoint', async ({ I }) => {
+    const response = await I.sendGetRequest('/nonexistent');
+    I.seeResponseCodeIs(404);
+});
