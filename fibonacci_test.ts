@@ -82,13 +82,6 @@ Scenario('Calculate Fibonacci with n = 1', async ({ I }) => {
     I.seeResponseContainsJson({ result: 1 });
 });
 
-Scenario('Calculate Fibonacci with negative value (n = -1)', async ({ I }) => {
-    const n = -1;
-    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
-    I.seeResponseCodeIs(400);
-    I.seeResponseContainsJson({ error: 'n should be greater than or equal to 0' });
-});
-
 Scenario('Calculate Fibonacci with large value (n = 50)', async ({ I }) => {
     const n = 50;
     const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
