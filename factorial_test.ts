@@ -1,6 +1,6 @@
 Feature('Factorial API Tests');
 
-Scenario('Calculate the factorial of valid value', async ({ I }) => {
+Scenario('Calculate the factorial of valid value ', async ({ I }) => {
     const n = 5;
     const expectedResponse = 'Factorial of 5 is: 120';
 
