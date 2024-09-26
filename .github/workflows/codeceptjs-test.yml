@@ -32,6 +32,14 @@ jobs:
     - name: Grant permission to CodeceptJS
       run: chmod +x ./node_modules/.bin/codeceptjs
 
+      # Khởi động server (thay đổi lệnh này tùy thuộc vào cách khởi động server của bạn)
+    - name: Start API server
+      run: npm start & # hoặc lệnh tương ứng để khởi động server
+
+      # Chờ vài giây để server khởi động hoàn toàn
+    - name: Wait for server to start
+      run: sleep 10
+
     # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
       run: npx codeceptjs run --steps
