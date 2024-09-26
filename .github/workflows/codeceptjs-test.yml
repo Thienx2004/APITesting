@@ -40,9 +40,9 @@ jobs:
     - name: Wait for server to start
       run: sleep 10
         
-        # Kiểm tra xem server có hoạt động không trước khi chạy tests
-             - name: Check API server status
-             run: curl --fail http://localhost:8080 || exit 1
+    # Kiểm tra xem server có hoạt động không trước khi chạy tests
+    - name: Check API server status
+      run: curl --fail http://localhost:8080 || exit 1
 
     # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
