@@ -1,0 +1,33 @@
+name: Run CodeceptJS Tests
+
+# Chạy workflow này khi có lệnh push lên nhánh chính hoặc pull request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code từ GitHub repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Thiết lập Node.js môi trường
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Đảm bảo Node.js version phù hợp với dự án
+
+    # Cài đặt các phụ thuộc
+    - name: Install dependencies
+      run: npm install
+
+    # Chạy test với CodeceptJS
+    - name: Run CodeceptJS tests
+      run: npx codeceptjs run
