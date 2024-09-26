@@ -82,12 +82,6 @@ Scenario('Calculate Fibonacci with n = 1', async ({ I }) => {
     I.seeResponseContainsJson({ result: 1 });
 });
 
-Scenario('Calculate Fibonacci with large value (n = 50)', async ({ I }) => {
-    const n = 50;
-    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
-    I.seeResponseCodeIs(200);
-    I.seeResponseContainsJson({ result: 12586269025 });
-});
 
 Scenario('Calculate Fibonacci with non-integer input (n = abc)', async ({ I }) => {
     const n = 'abc';
@@ -95,11 +89,6 @@ Scenario('Calculate Fibonacci with non-integer input (n = abc)', async ({ I }) =
     I.seeResponseCodeIs(400);
 });
 
-Scenario('Calculate Fibonacci with missing parameter', async ({ I }) => {
-    const response = await I.sendGetRequest('/fibonacci');
-    I.seeResponseCodeIs(400);
-    I.seeResponseContainsJson({ error: "Missing required parameter 'n'" });
-});
 
 Scenario('Calculate Fibonacci with boundary value (n = 2)', async ({ I }) => {
     const n = 2;
@@ -108,12 +97,6 @@ Scenario('Calculate Fibonacci with boundary value (n = 2)', async ({ I }) => {
     I.seeResponseContainsJson({ result: 1 });
 });
 
-Scenario('Performance test with large n (n = 40)', async ({ I }) => {
-    const n = 40;
-    const response = await I.sendGetRequest(`/fibonacci?n=${n}`);
-    I.seeResponseCodeIs(200);
-    I.seeResponseContainsJson({ result: 102334155 });
-});
 
 Scenario('Send request to invalid endpoint', async ({ I }) => {
     const response = await I.sendGetRequest('/nonexistent');

@@ -34,4 +34,4 @@ jobs:
 
     # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
-      run: npx codeceptjs run
+      run: npx codeceptjs run --steps
