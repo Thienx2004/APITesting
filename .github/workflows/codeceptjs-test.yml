@@ -38,7 +38,7 @@ jobs:
 
       # Chờ vài giây để server khởi động hoàn toàn
     - name: Wait for server to start
-      run: sleep 10
+      run: sleep 5
         
     # Kiểm tra xem server có hoạt động không trước khi chạy tests
     - name: Check API server status
