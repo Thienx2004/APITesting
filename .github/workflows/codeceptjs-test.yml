@@ -28,6 +28,10 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    # Cấp quyền thực thi cho CodeceptJS
+    - name: Grant permission to CodeceptJS
+      run: chmod +x ./node_modules/.bin/codeceptjs
+
     # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
       run: npx codeceptjs run
