@@ -38,7 +38,7 @@ jobs:
 
       # Chờ vài giây để server khởi động hoàn toàn
     - name: Wait for server to start
-      run: sleep 60
+      run: sleep 10
 
     # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
