@@ -40,6 +40,18 @@ jobs:
     - name: Wait for server to start
       run: sleep 10
 
-    # Chạy test với CodeceptJS
+    - name: Wait for server to be ready
+      run: |
+            n=0
+            until [ $n -ge 30 ]
+            do
+              curl -s http://localhost:8080 && break
+              n=$((n+1))
+              echo "Waiting for server to start..."
+              sleep 5
+            done
+      
+
+      # Chạy test với CodeceptJS
     - name: Run CodeceptJS tests
       run: npx codeceptjs run --steps
