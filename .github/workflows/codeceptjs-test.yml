@@ -34,7 +34,7 @@ jobs:
 
       # Khởi động server (thay đổi lệnh này tùy thuộc vào cách khởi động server của bạn)
     - name: Start API server
-      run: mvn spring-boot:run  # hoặc lệnh tương ứng để khởi động server
+      run: mvn spring-boot:run & # hoặc lệnh tương ứng để khởi động server
 
       # Chờ vài giây để server khởi động hoàn toàn
     - name: Wait for server to start
