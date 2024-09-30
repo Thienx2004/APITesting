@@ -28,11 +28,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Thiết lập môi trường Java (JDK) cho Spring Boot
+  # 4. Thiết lập môi trường Java (JDK) cho Spring Boot
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Phiên bản Java phù hợp với dự án của bạn
+          distribution: 'temurin'  # Sử dụng JDK từ Eclipse Temurin
+          java-version: '17'  # Phiên bản Java 17 (hoặc phiên bản phù hợp với dự án của bạn)
 
       # 5. Khởi động server Spring Boot ở chế độ nền
       - name: Start API server
